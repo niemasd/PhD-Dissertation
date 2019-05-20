@@ -90,17 +90,91 @@ tn93\_to\_clusters.py & Convert tn93 output to the Cluster Picker clustering for
 \caption[HIV Simulation Parameters (epidemiological model)]{HIV Simulation Parameters (epidemiological model)}
 \vspace{-0.25in}
 \begin{center}
-\begin{tabular}{|P{1.8in}|P{2in}|P{2in}|}
+\begin{tabular}{|P{2in}|P{1.9in}|P{1.9in}|}
 \hline
  & \textbf{San Diego} & \textbf{Uganda} \\
 \hline
 \textbf{CN Model} & \gls{BA} & \gls{BA} \\
 \hline
-TODO & TODO & TODO \\
+\textbf{Expected Degree} & 4 & 4 \\
 \hline
+\textbf{Number of Seeds} & 1,500 & 15,000 \\
+\hline
+\textbf{$\lambda_{AU\rightarrow CU}$} (year$^{-1}$) & 8.667 & 8.667 \\
+\hline
+\textbf{$\lambda_{AT\rightarrow CT}$} (year$^{-1}$) & 4.333 & 4.333 \\
+\hline
+\textbf{$\lambda_{U\rightarrow T}$} (year$^{-1}$) & 1 & 1 \\
+\hline
+\textbf{$\lambda_{T\rightarrow U}$} (year$^{-1}$) & 1 & 0.48 \\
+\hline
+\textbf{$\lambda_{S,AU}$} (year$^{-1}$) & 0.1125 & 0.1125 \\
+\hline
+\textbf{$\lambda_{S,AC}$} (year$^{-1}$) & 0.0225 & 0.0225 \\
+\hline
+\textbf{$\lambda_{S,AT}$} (year$^{-1}$) & 0.005625 & 0.005625 \\
+\hline
+\textbf{$\lambda_{S,CT}$} (year$^{-1}$) & 0 & 0 \\
+\hline
+%\textbf{Rate from Acute Treated to Chronic Treated} & 
 \end{tabular}
 \end{center}
 \label{tab:favites-params-epi}
 \end{table}
+
+\begin{table}[!ht]
+\caption[HIV Simulation Parameters (evolutionary model)]{HIV Simulation Parameters (evolutionary model)}
+\vspace{-0.25in}
+\begin{center}
+\begin{tabular}{|P{2in}|P{1.9in}|P{1.9in}|}
+\hline
+ & \textbf{San Diego} & \textbf{Uganda} \\
+\hline
+\textbf{Seed Height} (years) & 25 & 25 \\
+\hline
+\textbf{Seed Rate} & $1 + e^{-t^2}$ & $1 + e^{-t^2}$ \\
+\hline
+\textbf{Population Growth} & 2.852 & 2.852 \\
+\hline
+\textbf{v.T50} & -2 & -2 \\
+\hline
+\textbf{Mutation Rate Location} & 0.0008 & 0.001 \\
+\hline
+\textbf{Mutation Rate Scale} & 0.0005 & 0.0005 \\
+\hline
+\textbf{\gls{GTR} $\pi_A$} & 0.392 & 0.377 \\
+\hline
+\textbf{\gls{GTR} $\pi_C$} & 0.164 & 0.172 \\
+\hline
+\textbf{\gls{GTR} $\pi_G$} & 0.212 & 0.210 \\
+\hline
+\textbf{\gls{GTR} $\pi_T$} & 0.232 & 0.241 \\
+\hline
+\textbf{\gls{GTR} $\pi_{AC}$} & 1.812 & 1.388 \\
+\hline
+\textbf{\gls{GTR} $\pi_{AG}$} & 9.934 & 7.017 \\
+\hline
+\textbf{\gls{GTR} $\pi_{AT}$} & 0.718 & 0.736 \\
+\hline
+\textbf{\gls{GTR} $\pi_{CG}$} & 0.971 & 0.594 \\
+\hline
+\textbf{\gls{GTR} $\pi_{CT}$} & 9.934 & 8.618 \\
+\hline
+\textbf{\gls{GTR} $\pi_{GT}$} & 1 & 1 \\
+\hline
+\textbf{$\alpha$} ($\Gamma$ shape) & 0.405 & 0.449 \\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:favites-params-evo}
+\end{table}
+
+\begin{figure}[h] 
+\centering
+\includegraphics[width=\textwidth]{figs/favites-seed-tree}
+\caption[Seed Tree]
+{(a) \gls{LTT} plot of the first 25 years of the dated San Diego tree along with multiple potential rate functions for the non-homogeneous Yule model~\cite{LeGat2016}, and (b) plots of the rate functions. Because HIV trees have more short branches than normal Yule models (i.e., rate 1), we looked for functions that lead to increased numbers of lineages close to the root. This can be done by increasing the rate close to the root and then gradually decreasing the rate. As can be seen, $\lambda(t)=1$ and $\lambda(t)=\max(2-t/25,1)$ are far lower than the real San Diego curve. $\lambda(t)=\exp(-t)+1$ is much closer to the real curve, and $\lambda(t)=\exp(-t^2)+1$ is marginally closer than it. We chose to use $\lambda(t)=\exp(-t^2)+1$ as a result.}
+\label{fig:favites-seed-tree}
+\end{figure}
 
 %% END FAVITES SUPPLEMENT
