@@ -1,0 +1,115 @@
+%% Dissertation Info
+\title{Mathematical Modeling of Viral Evolution and Epidemiology}
+\author{Alexander Niema Moshiri}
+\degreeyear{\the\year}
+\degreetitle{Doctor of Philosophy}
+\field{Bioinformatics and Systems Biology}
+%\specialization{Anthropogeny}  % If you have a specialization, add it here
+
+%% Committee Info
+\chair{Professor Siavash Mirarab}
+\cochair{Professor Pavel A. Pevzner}
+\othermembers{
+Professor Vineet Bafna\\
+Professor Joel O. Wertheim\\
+Professor David M. Smith\\
+}
+\numberofmembers{5} % |chair| + |cochair| + |othermembers|
+
+
+%% START FRONTMATTER
+\begin{frontmatter}
+\makefrontmatter
+
+%% Dedication
+\begin{dedication}
+\vspace*{\fill}
+I dedicate this dissertation to Ladan Moshiri, Ramin Moshiri, and Michelle Roxanna Moshiri-Warncke for years of love and support.
+~\\~\\~\\
+I dedicate this dissertation to Karen George for always being by my side.
+~\\~\\~\\
+I dedicate this dissertation to Ryan Micallef and Felix Garcia, \textit{mi familia}, for teaching me to live my life a quarter mile at a time.
+~\\~\\~\\
+I dedicate this dissertation to all my friends in the Bioinformatics and Systems Biology program for some of the best memories of my life.
+\vspace*{\fill}
+\end{dedication}
+
+%% Epigraph
+\begin{epigraph}
+\begin{center}
+\begin{minipage}{0.65\linewidth}
+\onehalfspacing
+{\large
+\textit{Folk in these stories had lots of chances of turning back, only they didn't. Because they were holding onto something.}\\
+~\\
+\textit{What are we holding onto, Sam?}\\
+~\\
+\textit{That there's some good in this world, Mr. Frodo. And it's worth fighting for.}
+\begin{flushright}
+---J.R.R. Tolkien
+\end{flushright}
+}
+\end{minipage}
+\end{center}
+\end{epigraph}
+
+%% Table of Contents
+\tableofcontents
+
+%% List of Abbreviations
+\newpage
+\addcontentsline{toc}{chapter}{\abbrevtitle}
+\begin{center}\expandafter\MakeUppercase\expandafter{\abbrevtitle}\end{center}
+\let\clearpage\relax
+\vspace*{-2cm}
+\printglossary[type=\acronymtype,title={}]
+
+%% List of Figures and Tables
+\listoffigures
+\listoftables
+
+
+%% Acknowledgements
+\begin{acknowledgements}
+I would like to acknowledge Professor Siavash Mirarab for all the time and effort he has taken to make my Ph.D. experience productive and intellectually stimulating. I thoroughly enjoyed lengthy algorithmic exploration sessions, and I am grateful for his mentorship.
+
+I would like to acknowledge Professor Pavel Pevzner for taking me under his wing at a time when I was somewhat lost regarding my career aspirations and for introducing me to the field of Bioinformatics Education. It was because of his guidance that I realized my passion for teaching, and I am honored he took a chance on me.
+
+I would like to acknowledge Professor Vineet Bafna his mentorship throughout my undergraduate and graduate academic careers. Without him, I would not be where I am today (figuratively and literally).
+
+Chapter~\ref{chap:favites}, in full, is a reprint of the material as it appears in ``\favitestitle'' (2018). Moshiri, Niema; Ragonnet-Cronin, Manon; Wertheim, Joel; Mirarab, Siavash, \textit{Bioinformatics}, bty921. The dissertation author was the primary investigator and first author of this paper.
+\end{acknowledgements}
+
+%% Vita
+\begin{vitapage}
+\begin{vita}
+\item[2015] B.~S. in Bioengineering: Bioinformatics, University of California, San Diego
+\item[2015-2016] Teaching Assistant, University of California, San Diego
+\item[2017] Associate Instructor, University of California, San Diego
+\item[2015-2019] Research Assistant, University of California, San Diego
+\item[2019] Ph.~D. in Bioinformatics and Systems Biology, University of California, San Diego
+\end{vita}
+\begin{publications}
+\item \textbf{Niema Moshiri} (2019). ``Why Do I Look Like My Mom and Dad? Plants and Animals Inherit Traits From Parents,'' \textit{STEMTaught}
+\item Metin Balaban, \textbf{Niema Moshiri}, Uyen Mai, and Siavash Mirarab (2019). ``TreeCluster: Clustering Biological Sequences using Phylogenetic Trees,'' \textit{GLBIO 2019}, doi:~10.1101/591388
+\item Adam Rule, Amanda Birmingham, Cristal Zuniga, Ilkay Altintas, Shih-Cheng Huang, Rob Knight, \textbf{Niema Moshiri}, Mai H. Nguyen, Sara Brin Rosenthal, Fernando Pérez, and Peter W. Rose (2019). ``Ten Simple Rules for Reproducible Research in Jupyter Notebooks,'' \textit{PLOS Computational Biology (in press)}, arXiv:~1810.08055
+\item \textbf{Niema Moshiri} and Liz Izhikevich (2018). \textit{Design and Analysis of Data Structures}, Amazon KDP, ISBN:~1981017232
+\item \textbf{Niema Moshiri}, Manon Ragonnet-Cronin, Joel O. Wertheim, and Siavash Mirarab (2018). ``FAVITES: simultaneous simulation of transmission networks, phylogenetic trees, and sequences,'' \textit{Bioinformatics}, doi:~10.1093/bioinformatics/bty921
+\item \textbf{Niema Moshiri} (2018). ``The dual-Barab\'asi-Albert model,'' \textit{arXiv}, arXiv:~1810.1810.10538
+\item \textbf{Niema Moshiri} (2018). ``TreeN93: a non-parametric distance-based method for inferring viral transmission clusters,'' \textit{bioRxiv}, doi:~10.1101/383190
+\item \textbf{Niema Moshiri} (2018). ``TreeSwift: a massively scalable Python tree package,'' \textit{bioRxiv}, doi:~10.1101/325522
+\item \textbf{Niema Moshiri}, Liz Izhikevich, and Christine Alvarado (2018). ``Data Structures: An Active Learning Approach,'' \textit{edX}
+\item \textbf{Niema Moshiri}, Phillip Compeau, and Pavel Pevzner (2017). ``Analyze Your Genome!,'' \textit{edX}
+\item Phillip Compeau, \textbf{Niema Moshiri}, and Pavel Pevzner (2017). ``Introduction to Genomic Data Science,'' \textit{edX}
+\item \textbf{Niema Moshiri} (2017). ``A linear-time algorithm to sample the dual-birth model,'' \textit{bioRxiv}, doi:~10.1101/226423
+\item \textbf{Niema Moshiri} and Siavash Mirarab (2017). ``A Two-State Model of Tree Evolution and Its Applications to Alu Retrotransposition,'' \textit{Systematic Biology}, 67(3), 475-489. doi:~10.1093/sysbio/syx088
+\end{publications}
+\end{vitapage}
+
+%% Abstract
+\begin{abstract}
+Phylogenetic trees can be used to study the evolution of any sequence that evolves, namely viruses. Models of tree evolution describe probability distributions over the space of tree shapes and can be used to simulate trees that capture the evolutionary patterns of real world phenomena as well as to infer evolutionary parameters inherently of interest to the biologist. The spread of many viruses is driven by social and sexual networks, and phylogenetic inference from viral sequences can be used to improve the reconstruction of their transmission histories, which in turn can greatly enhance epidemiological intervention. The simultaneous simulation of viral transmission network, phylogenetic tree, and sequences can provide a method to observe the effects of virus model parameters on the epidemic as well as to study the accuracies and errors of transmission inference tools. I developed a novel framework to simulate viral transmission networks, phylogenetic trees, and sequences, developed novel evolutionary models, studied the effects of model parameters on epidemic outcomes via simulation experiments using the proposed framework, developed a scalable and non-parametric method of viral transmission cluster inference, and contributed to publicly-accessible Bioinformatics education.
+\end{abstract}
+\end{frontmatter}
+
+%% END FRONT MATTER

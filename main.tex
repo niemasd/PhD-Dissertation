@@ -1,0 +1,99 @@
+\documentclass[12pt,chapterheads]{ucsd}
+
+%% math packages
+\usepackage{amsmath, amscd, amssymb, amsthm}
+
+%% graphic packages
+\usepackage{scrextend}
+\usepackage{pslatex}
+\usepackage{graphicx}
+
+%% caption stuff
+\makeatletter
+\gdef\@ptsize{2}% 12pt documents
+\let\@currsize\normalsize
+\makeatother
+\usepackage{setspace}
+\doublespace
+\usepackage[font=small, width=0.9\textwidth]{caption}
+
+%% SUBFIG - Use this to place multiple images in a
+%    single figure.  Subfig will handle placement and
+%    proper captioning (e.g. Figure 1.2(a))
+% \usepackage{subfig}
+
+%% font stuff (for TImes New Roman)
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+
+%% INDEX
+%   Uncomment the following two lines to create an index: 
+% \usepackage{makeidx}
+% \makeindex
+%   You will need to uncomment the \printindex line near the
+%   bibliography to display the index.  Use the command
+% \index{keyword} 
+%   within the text to create an entry in the index for keyword.
+%   To compile a LaTeX document with an index the 'makeindex'
+%   command will need to be run.  See the wiki for more details.
+
+%% URL stuff
+\usepackage{url}
+\urlstyle{same}
+
+%% citation stuff
+\usepackage{microtype}  % avoids citations that hang into the margin
+
+%% footnote stuff
+\usepackage{footnote}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+
+%% table formatting stuff
+\usepackage{rotating}  % Enables the sideways environment (NCPW)
+\usepackage{array}  % Enables "m" tabular environment http://ctan.org/pkg/array
+\usepackage{booktabs}  % Enables \toprule  http://ctan.org/pkg/array
+
+%% acronym/abbreviation stuff
+\usepackage[acronym]{glossaries}
+
+%% define section names
+\newcommand{\abbrevtitle}{List of Abbreviations}
+\newcommand{\introtitle}{Introduction}
+\newcommand{\favitestitle}{FAVITES: simultaneous simulation of transmission networks, phylogenetic trees, and sequences}
+
+%% define acronyms
+\newacronym{art}{ART}{Antiretroviral Therapy}
+\newacronym{hiv}{HIV}{Human Immunodeficiency Virus}
+\makeglossaries
+
+
+\begin{document}
+
+%% include sections
+\include{section_frontmatter}
+\include{section_intro}
+\include{section_favites}
+
+
+%% APPENDIX
+\appendix
+\chapter{Final notes}
+What to do about things \cite{Martin_1983}.  What did he say \cite{Rilling_Insel_1999}.
+  Remove me in case of abdominal pain.
+
+
+
+%% END MATTER
+% \printindex %% Uncomment to display the index
+% \nocite{}  %% Put any references that you want to include in the bib 
+%               but haven't cited in the braces.
+\bibliographystyle{ieeetr} % Bibliography style
+%\setlength{\bibleftmargin}{0.25in}  % indent each item
+%\setlength{\bibindent}{-\bibleftmargin}  % unindent the first line
+%\def\baselinestretch{1.0}  % force single spacing
+%\setlength{\bibitemsep}{0.16in}  % add extra space between items
+\bibliography{dissertation}  %% Load bib file (dissertation.bib)
+\singlespace  %to force bibilography environment to use single spacing for each entry 
+              %double spacing between entries remains
+\end{document}
