@@ -1,0 +1,106 @@
+%% START FAVITES SUPPLEMENT
+\chapter{Supplemental Material for Chapter~\ref{chap:favites}}
+\label{chap:favites-sup}
+\clearpage
+
+\begin{table}[!ht]
+\caption[Comparison with Existing Simulation Tools]{Comparison with Existing Simulation Tools}
+\vspace{-0.25in}
+\begin{center}
+\begin{tabular}{|P{0.8in}|P{0.5in}|P{0.8in}|P{0.8in}|P{0.6in}|P{0.8in}|P{0.8in}|}
+\hline
+ & \textbf{epinet} & \textbf{TreeSim} & \textbf{outbreaker} & \textbf{seedy} & \textbf{PANGEA} & \textbf{FAVITES} \\
+\hline
+\textbf{Contact Network} & Fixed & Complete & Complete & Complete & Fixed & Any \\
+\hline
+\textbf{Trans. Network} & Fixed & Fixed & Fixed & Fixed & Fixed & Any\\
+\hline
+\textbf{Sampling} & N/A & Fixed or \newline Sequential & Fixed & Uniform & Fixed & Any \\
+\hline
+\textbf{Phylogeny} & None & Fixed & Fixed & Fixed & Coalescent & Any \\
+\hline
+\textbf{Mutation Rate} & N/A & N/A & Constant & Constant & Fixed & Any \\
+\hline
+\textbf{Sequences} & None & None & Fixed & Fixed & Fixed & Any \\
+\hline
+\textbf{Sequencing} & N/A & N/A & No & No & No & Any \\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:favites-comparison}
+\end{table}
+
+\begin{table}[!ht]
+\caption[Post-Validation Tools]{Post-Validation Tools}
+\vspace{-0.25in}
+\begin{center}
+\begin{tabular}{|P{2.3in}|P{3.7in}|}
+\hline
+\textbf{Name} & \textbf{Description}  \\
+\hline
+compare\_contact\_networks.py & Compare the degree distributions of a given simulated contact network against a reference contact network \\
+\hline
+compare\_trees.py & Compare the distributions of all branch lengths, internal branch lengths, terminal branch lengths, and root-to-tip distances between a given simulated tree against a given reference tree \\
+\hline
+distribution\_distance.py & Compute a distance between two distributions given samples from each \\
+\hline
+ltt.py & Create a \gls{LTT} plot from one or more Newick trees \\
+\hline
+sequence\_score\_profile\_HMM.py & Score a given sequence dataset against a given profile \gls{HMM} \\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:favites-post-validation}
+\end{table}
+
+\begin{table}[!ht]
+\caption[Helper Scripts]{Helper Scripts}
+\vspace{-0.25in}
+\begin{center}
+\begin{tabular}{|P{2.75in}|P{3.25in}|}
+\hline
+\textbf{Name} & \textbf{Description}  \\
+\hline
+clean\_labels.py & For each read of the given sequence file or each leaf of a given phylogenetic tree, remove everything from the label except for the contact network individual's name \\
+\hline
+cluster\_previous\_time.py & Given a clustering from the simulation end time, a FAVITES-format transmission network, and a time, remove individuals who were not infected at the given time and output the resulting clusters \\
+\hline
+cn\_adjacency\_matrix\_to\_favites.py & Convert a given contact network from a binary adjacency matrix to the FAVITES format \\
+\hline
+degree\_stats.py & Given a contact or transmission network, compute various statistics of the node degree distribution \\
+\hline
+FAVITES2GEXF.py & Convert a FAVITES contact network and transmission network to the GEXF format \\
+\hline
+PANGEA\_transmissions\_to\_FAVITES.py & Convert a PANGEA transmission network into the FAVITES edge-list format \\
+\hline
+patristic\_distances.py & Given a phylogenetic tree, compute the pairwise distances between leaves and output the resulting distance matrix as a CSV file \\
+\hline
+scale\_tree.py & Given a phylogenetic tree (in the Newick format), scale all branches \\
+\hline
+score\_clusters.py & Score a given query clustering against a given true reference clustering \\
+\hline
+tn93\_to\_clusters.py & Convert tn93 output to the Cluster Picker clustering format \\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:favites-helper}
+\end{table}
+
+\begin{table}[!ht]
+\caption[HIV Simulation Parameters (epidemiological model)]{HIV Simulation Parameters (epidemiological model)}
+\vspace{-0.25in}
+\begin{center}
+\begin{tabular}{|P{1.8in}|P{2in}|P{2in}|}
+\hline
+ & \textbf{San Diego} & \textbf{Uganda} \\
+\hline
+\textbf{CN Model} & \gls{BA} & \gls{BA} \\
+\hline
+TODO & TODO & TODO \\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:favites-params-epi}
+\end{table}
+
+%% END FAVITES SUPPLEMENT

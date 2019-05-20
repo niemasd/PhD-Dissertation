@@ -53,6 +53,7 @@
 \usepackage{rotating}  % Enables the sideways environment (NCPW)
 \usepackage{array}  % Enables "m" tabular environment http://ctan.org/pkg/array
 \usepackage{booktabs}  % Enables \toprule  http://ctan.org/pkg/array
+\newcolumntype{P}[1]{>{\centering\arraybackslash}m{#1}}
 
 %% acronym/abbreviation stuff
 \usepackage[acronym]{glossaries}
@@ -63,8 +64,16 @@
 \newcommand{\favitestitle}{FAVITES: simultaneous simulation of transmission networks, phylogenetic trees, and sequences}
 
 %% define acronyms
-\newacronym{art}{ART}{Antiretroviral Therapy}
-\newacronym{hiv}{HIV}{Human Immunodeficiency Virus}
+\newacronym{API}{API}{Application Program Interface}
+\newacronym{ART}{ART}{Antiretroviral Therapy}
+\newacronym{BA}{BA}{Barab\'asi--Albert}
+\newacronym{ER}{ER}{Erd\H os--R\'enyi}
+\newacronym{GTR}{GTR}{General Time-Reversible}
+\newacronym{HIV}{HIV}{Human Immunodeficiency Virus}
+\newacronym{HMM}{HMM}{Hidden Markov Model}
+\newacronym{LTT}{LTT}{Lineages Through Time}
+\newacronym{MSA}{MSA}{Multiple Sequence Alignment}
+\newacronym{WS}{WS}{Watts--Strogatz}
 \makeglossaries
 
 
@@ -76,24 +85,16 @@
 \include{section_favites}
 
 
-%% APPENDIX
+%% Appendix
 \appendix
-\chapter{Final notes}
-What to do about things \cite{Martin_1983}.  What did he say \cite{Rilling_Insel_1999}.
-  Remove me in case of abdominal pain.
+\include{section_favites_sup}
 
 
 
-%% END MATTER
+%% End Matter
 % \printindex %% Uncomment to display the index
-% \nocite{}  %% Put any references that you want to include in the bib 
-%               but haven't cited in the braces.
-\bibliographystyle{ieeetr} % Bibliography style
-%\setlength{\bibleftmargin}{0.25in}  % indent each item
-%\setlength{\bibindent}{-\bibleftmargin}  % unindent the first line
-%\def\baselinestretch{1.0}  % force single spacing
-%\setlength{\bibitemsep}{0.16in}  % add extra space between items
-\bibliography{dissertation}  %% Load bib file (dissertation.bib)
-\singlespace  %to force bibilography environment to use single spacing for each entry 
-              %double spacing between entries remains
+\bibliographystyle{ieeetr}
+\bibliography{dissertation}
+\singlespace
+
 \end{document}
