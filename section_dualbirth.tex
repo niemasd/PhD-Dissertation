@@ -8,6 +8,7 @@
 \newcommand{\RNALL}{\Psi}
 \newcommand{\SD}{\omega}
 \newcommand{\SDALL}{\Omega}
+\newcommand{\TBL}{L}
 \newcommand{\TO}{T^\SD}
 \newcommand{\TR}{T^\RN}
 \newcommand{\TRO}{\TR_{\SD}}
@@ -16,7 +17,9 @@
 \newcommand{\defeq}{=}
 \newcommand{\la}{\lambda_a}
 \newcommand{\lb}{\lambda_b}
+\newcommand{\li}{\lambda_i}
 \newcommand{\leaf}{\otimes}
+\newcommand{\tav}{\tau'}
 \newcommand{\tO}{t^\SD}
 
 \newtheorem{conjecture}{Conjecture}
@@ -38,7 +41,7 @@ Given sufficiently long sequences and assuming our models of sequence evolution 
 
 Models of tree evolution describe probability distributions over the space of tree shapes ~\cite{Yule1925,Brown1994,Aldous2001} and are useful in several ways. They can be used as the prior distribution in a Bayesian inference~\cite{Drummond2007,Mooers2012,Sayyari2016}. They can also generate null distributions describing certain neutral evolutionary process, which may then be rejected by trees inferred from the data~\cite{Guyer1991,Kirkpatrick1993,Agapow2002}. Moreover, the diversification parameters are inherently of interest to the biologist~\cite{Morlon2014}. Two well-known models of tree evolution are Yule (birth-only), in which each branch splits by a Poisson process with a constant rate, and birth-death, in which, in addition to birth, branches can go extinct with a constant rate. Each of these models have limitations and have inspired the development of several alternative models~\cite{Aldous1996,Steel2001,Ford2005,Blum2006,Jones2011,Maddison2007}.
 
-A main feature of a tree evolution model is the expected tree shape, especially the tree balance (Fig.~\ref{fig:dualbirth-model}). The Yule model generates relatively balanced trees~\cite{McKenzie2000}, more so than typically seen in phylogenetic trees~\cite{Blum2006}. Some systems, such as certain viruses, are especially known to have very unbalanced trees~\cite{Volz2013}. Most models of evolution are exchangeable, meaning that, after a split, the two branches are indistinguishable. When evolution works in a series of propagation events (i.e., where an element copies itself), there is a natural way in which one of the child branches corresponds to the parent branch~\cite{Lambert2013}. The new copy may have properties that are different from the original branch, and as a result, non-exchangeable models may be more appropriate. For example, the new child may be initially incapable of propagation until it \textit{activates}. In such situations, the tree will tend to be unbalanced. In the limit, if every new child is impotent, one would expect a {\em caterpillar}-like tree (Fig.~\ref{fig:dualbirth-model}).
+A main feature of a tree evolution model is the expected tree shape, especially the tree balance (Fig.~\ref{fig:dualbirth-model}). The Yule model generates relatively balanced trees~\cite{McKenzie2000}, more so than typically seen in phylogenetic trees~\cite{Blum2006}. Some systems, such as certain viruses, are especially known to have very unbalanced trees~\cite{Volz2013}. Most models of evolution are exchangeable, meaning that, after a split, the two branches are indistinguishable. When evolution works in a series of propagation events (i.e., where an element copies itself), there is a natural way in which one of the child branches corresponds to the parent branch~\cite{Lambert2013}. The new copy may have properties that are different from the original branch, and as a result, non-exchangeable models may be more appropriate. For example, the new child may be initially incapable of propagation until it \textit{activates}. In such situations, the tree will tend to be unbalanced. In the limit, if every new child is impotent, one would expect a \textit{caterpillar}-like tree (Fig.~\ref{fig:dualbirth-model}).
 
 In this paper, we study a non-exchangeable extension of the Yule model, which we name the dual-birth model. Each branch will split with one of two available rates. Branches that correspond to elements that have in the past propagated are considered \textit{active} and have a high rate of future propagation, whereas  branches that have never propagated are considered \textit{inactive}. With some rate, the Unlike some previous models (e.g. BiSSE~\cite{Maddison2007}), after every birth event, one of the two children inherits the parent's rate while the other child has the opposite rate (i.e., the model is asymmetric in the terminology of Lambert and Stadler (2013)~\cite{Lambert2013}). For this dual-birth  model, we describe methods for sampling the tree distribution, derive probability distributions on the tree space, compute the expectation of various tree statistics, and introduce methods of estimating the model parameters from data. In extensive simulations, we study the behavior of the model and our estimators. We then use the model to study the evolution of \textit{Alu} elements in the human genome.
 
@@ -51,14 +54,14 @@ A topic of interest regarding \textit{Alu} elements is the number and identity o
 The dual-birth model is similar to the Yule process, but unlike Yule, it is not \textit{exchangeable}, meaning that left and right branches are not generated using identical processes. The dual-birth model is parameterized by two birth parameters: $\la$ and $\lb$. The generative process starts with a single root node, which immediately splits into two child branches \textit{left}, denoted by $a$,  and \textit{right}, denoted by $b$. Further birth events occur on each child branch according to a Poisson process with the constant rate $\la$ on branch $a$ and the constant rate $\lb$ on branch $b$. Thus, \textit{left} and \textit{right} are governed by different rates. Each new node becomes the root of an identical process. The process can be terminated at any point in time. This generates an unlabeled \textit{ordered}, also known as oriented~\cite{Lambert2013}, tree: each branch is labeled as either \textit{left} or \textit{right} (Fig.~\ref{fig:dualbirth-model}a). We define $r=\la/\lb$ and $\lambda=\la+\lb$, which together identify $\la$ and $\lb$. When $r=1$, the dual-birth process is reduced to the Yule process
 with a rate of $\lambda/2$.
 
-\subsubsection{Active/inactive elements}
+\subsubsection{Active/Inactive Elements}
 Consider a tree in which each branch corresponds to some entity, and the right child of any branch corresponds to the same entity as the parent. Thus, each split is a propagation of the parent entity. Moreover, entities are either \textit{active} or \textit{inactive}. A branch is active if it has produced an offspring before and is otherwise considered inactive. The right child of any branch is always active while the left one is  inactive. Active entities  propagate with rate $\lb$ (for ``birth''), and inactive entities activate and simultaneously propagate with rate $\la$ (for ``activation''). Note that activation and the first propagation occur together (an alternative model could be that nodes activate mid-branch and wait for a birth event). Once an entity activates, it remains active (thus, there is no deactivation).
 
 The dual-birth model can easily capture this scenario. If $r=1$ (i.e., the Yule model), active and inactive nodes have the same rates of birth, and thus, their difference is inconsequential. When $r<1$, new entities activate (i.e., propagate for the first time) with a rate $\la$ that is lower than the rate $\lb$ with which nodes that are already active propagate (Fig.~\ref{fig:dualbirth-model}b). Allowing $\la > \lb$ would result in $r > 1$, which yields a model that is non-identifiable with the model that has rate $1/r$. Setting $r>1$ would correspond to a scenario where the rate of propagation \textit{reduces} after the first activation, and we don't know of any scenario that justifies such reductions. Thus, our model defines $\la\leq\lb$ to remain identifiable.
 
 One application of the dual-birth model is to study \textit{Alu} elements, though the model may prove useful for other systems, such as retroviruses or gene families. Each \textit{Alu} element appears at a specific position in the genome, and via retrotransposition, it can create a new copy of itself elsewhere in the genome, leading to a split in the repeat evolutionary tree. Each branch of the tree can thus be labeled by a position in the genome, which is the site at which the corresponding element resides. One child branch inherits the same position as the parent (and is thus active), and the other branch is the new copy, which is assumed to be initially inactive. The inactive state captures the observation that most \textit{Alu} elements don't propagate~\cite{Batzer2002}. The model allows for the chance that some inactive elements become active and start propagating, perhaps due to mutations or due to changes in their genomic context.
 
-\subsubsection{Tree balance}
+\subsubsection{Tree Balance}
 The Yule model generates balanced trees, more so than trees typically found in phylogenetic databases~\cite{Guyer1991,Blum2006,Jones2011}. Similar to several other models of tree evolution~\cite{Aldous1996,Blum2006,Maddison2007}, the dual-birth model provides a natural way to control tree balance (we provide an extensive comparison to other models in the Discussion section). Consider an extreme case in which only one element is ever active. The resulting tree is a caterpillar, which will include only one cherry (an internal node is called a cherry if both of its children are leaves, i.e., terminal nodes). This outcome can be naturally achieved in dual-birth by setting $\la=0$ (i.e., $r=0$). When we expect to have many more inactive nodes than active nodes, we would still expect to see an unbalanced tree with few cherries. This outcome, too, can be achieved by a natural choice of $\la\ll\lb$, which results in $r\ll 1$. As $r$ increases, the tree becomes gradually more balanced (Fig.~\ref{fig:dualbirth-model}b). With $r=1$, the tree is as balanced as expected under the Yule model.
 
 \begin{figure} % FIGURE 1 IN ORIGINAL PAPER
@@ -83,7 +86,7 @@ A ranked ordered tree shape is defined by $\TRO\defeq(T,\RN,\SD)$. For ease of n
 
 We refer to a tree shape with ultrametric branch lengths as a weighted shape. A weighted shape is defined by $t\defeq(T,\bl,\tau)$, where $\bl:E\mapsto\mathbb{R}$ gives the length of internal branches and $\tau$ gives the distance from the root to all leaves; note that $\tau$ has to be larger than the largest distance to the root from any internal node. Node ages define a unique ranking on any weighted shape. A weighted shape $t$ can also be assigned an order, $\SD$, and will be denoted by $\tO$. For $e=(u,v)\in E$, we refer to  $\bl(e)$ by $\bl_i$ where $i={\RN(v)}$ (e.g. $\bl_1\ldots\bl_4$ in Fig.~\ref{fig:dualbirth-model}a).
 
-\subsubsection{Probability distributions}
+\subsubsection{Probability Distributions}
 We now derive probability distributions on tree shapes conditioning on fixed $n$. Here we give the main results and provide the proofs in Section~\ref{sec:dualbirth-proofs}.
 
 \begin{theorem}\label{thm:TRO}
@@ -95,7 +98,7 @@ Let $X$ be a random variable (r.v.) over ordered ranked tree shapes and distribu
 
 Computing Equation~\ref{eq:orts} simply requires knowing the number of right leaves ($\RBh$) and the number of its left branches if the tree is terminated at each node $i$ ($\LB{i}$); all of these can be computed in time $O(n)$ for an ordered tree. Figure~\ref{fig:dualbirth-tree-prob-dists} shows the perfect match between Equation~\ref{eq:orts} and observed frequencies in simulations for all ranked ordered tree shapes with $n=6$ and shows that, with $r\ll1$, the caterpillar tree shape has a high probability.
 
-The left/right order of nodes cannot be estimated from sequence data, and thus, it would be more useful to compute the probability distribution over unordered ranked tree shapes. Since all orderings of a {\em ranked} tree are distinct, the probability of a ranked tree simply needs to marginalize over all possible orderings. Thus,
+The left/right order of nodes cannot be estimated from sequence data, and thus, it would be more useful to compute the probability distribution over unordered ranked tree shapes. Since all orderings of a \textit{ranked} tree are distinct, the probability of a ranked tree simply needs to marginalize over all possible orderings. Thus,
 \begin{corollary}
 For $Y$, an r.v.\ over ranked tree shapes with $n$ leaves and distributed according to the dual-birth model,
 \begin{equation}\label{eq:rts}
@@ -104,16 +107,131 @@ For $Y$, an r.v.\ over ranked tree shapes with $n$ leaves and distributed accord
 where $\SDALL$ gives the set of all orderings of $\TR$.
 \end{corollary}
 
-This computing requires
-an exponential number of 
-computations to iterate all orderings (the recursive formula for that iteration is given
- in the supplement, Eq. S5. %~\ref{sup:eq:sdall}).
-%%%%%%%%in \ref{sup:eq:sdall}. 
-Whether efficient
-algorithms for computing this probability 
-exist is unclear to us. 
-See Figure S1 %~\ref{fig:rankedordered}
-for an example distribution
-and matching simulations.
+This computing requires an exponential number of computations to iterate all orderings (the recursive formula for that iteration is given in Equation~\ref{sup:eq:sdall}. Whether efficient algorithms for computing this probability exist is unclear to us. See Figure~\ref{fig:dualbirth-tree-prob-dists} for an example distribution and matching simulations.
+
+Next, we turn to computing the probability distribution over unranked shapes. This can be done by enumerating all possible rankings of the unranked tree and summing up their probabilities. The set of all rankings, $\RNALL(T)$, is simply the set of all the linear extensions of the \gls{POSET} defined by the tree shape. However, a final complication needs to be addressed. Recall that leaves are unlabeled. For a non-cherry symmetric node $u$ (i.e., sub-tree shapes below $\child{u}{1}$ and $\child{u}{2}$ are identical), take any ordering of any ranking of nodes below $u$. Now swap $\SD(\child{u}{1})$ and  $\SD(\child{u}{2})$ and also swap the rankings of nodes below $\SD(\child{u}{1})$ with the rankings of the identical nodes under $\SD(\child{u}{2})$ (Fig.~\ref{fig:dualbirth-model}c); this would produce an identical tree shape. However, our process will count this identical tree shape twice. To account for this, we need to divide the total probability by two for every non-cherry symmetric node. Thus,
+\begin{corollary}
+For $Z$, an r.v.\ over tree shapes with $n$ leaves and distributed according to the dual-birth model,
+\begin{equation}\label{eq:rt}
+\Pr(Z=T;n) = \frac{1}{2^{\sigma(T)}}\sum_{\RN\in\RNALL(T)} \Pr(\TR)
+\end{equation}
+where $\RNALL$ gives all rankings of $T$ and $\sigma(T)$ is the number of non-cherry symmetric nodes in $T$.
+\end{corollary}
+
+\subsubsection{Weighted Trees}
+Given an ordered weighted tree shape $\TRO$, we can easily compute the probability density function (p.d.f) for the length of each of its internal branches. Recall $\bl_i$ is the time between internal nodes ranked $i-1$ and $i$ (i.e., an interval), which is simply the length of a specific branch. Given the tree shape, $\bl_i$  follows an exponential distribution with rate $\li=\la\LB{i}+\lb(i+1-\LB{i})$. This is because the branch length is simply the  minimum of all exponential r.v.s active in the corresponding interval, which itself, is an exponential r.v. with the total rate. Furthermore, since each interval is independent of the other intervals given $\TRO$, the joint probability density of $\TRO$ and a set of internal branch lengths can be computed by multiplying the probability of $\TRO$ (Eq.~\ref{eq:orts}) by the probability density of every branch length given $\TRO$. Finally, to compute the joint probability density of a given tree and all its branch lengths, we need to also multiple the probability of no births in the final interval of length $\bl_{n-1}=\tau-\sum_1^{n-2}\bl_{i}$; this is the probability of no events for an exponential with rate $\LB{n-1}$ in time $\bl_{n-1}$; i.e., $e^{-\LB{n-1}\bl_{n-1}}$.
+
+\subsubsection{Expected Number of Cherries and Active Leaves}\label{sec:cherries}
+We now ask the following question: how many cherries and how many active nodes are expected in a dual-birth tree generated with rate ratio $r$?
+
+A parsimony analysis is constructive here. Activation events can be considered evolutionary changes. Given an unordered tree, the most parsimonious ordering is one that implies the minimum number of activation events. The number of activations is simply the number of left branches that have children. By making every internal node that is sister to a leaf a right node and arbitrarily ordering the rest, one can show that the most parsimonious ordering has exactly one activation for each cherry in the tree, counting the root as an activation (Lemma~\ref{lem:cherryparsimony}). The parsimony analysis would only be relevant for $r\ll1$, when one would expect very few activations. As $r$ increases, the tree becomes more balanced, and we would expect more cherries. We now formalize this intuition.
+
+\begin{theorem}\label{thm:cherr}
+For a tree shape $Z$ generated by the dual-birth model with $r=\la/\lb$, let $C=\CH{Z}/n$ be an r.v. capturing the fraction of cherries; then, 
+\begin{align}\label{eq:cherries}
+\lim_{n\to\infty}\mathbb{E}(C) = \frac{\sqrt{r}}{1+r+\sqrt{r}}
+\end{align}
+\end{theorem}
+
+\begin{corollary}\label{cor:rbh}
+For an r.v.\ $N_r$ capturing the fraction of right (i.e., active) leaves in tree shape $T$,
+\begin{align}\label{eq:nr}
+\lim_{n\to\infty}\mathbb{E}(N_r) = \frac{\sqrt{r}}{1+\sqrt{r}}
+\end{align}
+\end{corollary}
+
+\begin{figure} % FIGURE 2 IN ORIGINAL PAPER
+\centering
+\includegraphics[width=\textwidth]{figs/dualbirth-c-vs-r}
+\caption[Theoretical Expectations]
+{Theoretical expectations of (a) cherry fraction (dashed dark gray line) and active leaf fraction (dashed light gray line), and (b) branch length (dashed dark gray line) and pendant branch length (dashed light gray line) versus simulated distributions (in box plots) using 100 replicates with $n=4096$, $\lambda=48$, and varying values of $r$ ($x$-axis) from $1/1024$ to $1$. Note that the number of cherries is the maximum parsimony estimate of the number of active elements, and the most parsimonious estimate works well for low values of $r$.}
+\label{fig:dualbirth-c-vs-r}
+\end{figure}
+
+The proofs can be found in Section~\ref{sec:dualbirth-proofs}.
+As Figure~\ref{fig:dualbirth-c-vs-r}a shows, these expectations closely match simulations results. As $r$ increases, the expected frequency of cherries increases until it reaches its peak at \sfrac{1}{3} for $r=1$. The number of active elements follows a similar pattern and reaches its peak at \sfrac{1}{2}  for $r=1$. Thus, under the Yule model, only half the nodes will be expected to be active (recall that an active element is defined as one that has already propagated). Also note $r=x$ and $r=\frac{1}{x}$ differ only in what elements are labeled left or right, and thus, they are indistinguishable for unordered trees. As noted before, $r>1$ does not have a meaningful interpretation in biological processes that we consider; thus, we focus on $0\leq r\leq1$.
+
+\subsubsection{Expected Branch Length}
+A natural quantity of interest under any model of tree evolution is the expected length of a random branch. For example, under the Yule model, branches are exponentially distributed with rate $1/2\lambda$~\cite{Mooers2012}. In our model, the expected branch length depends on both $\lambda$ and $r$. In all the results given below, we assume all the leaves are sampled. 
+\begin{theorem}\label{thm:bl}
+For a weighted tree shape $t$ generated by the dual-birth model with parameters $r$ and $\lambda$ conditioned on having $n$ leaves, let $\BL$ be an r.v.\ giving the length of a random branch in $t$; i.e., $\BL=\bl_I$ for $I\sim\mathcal{U}(1,n-2$). Then, 
+\begin{align}\label{eq:bl}
+\lim_{n\to\infty}\mathbb{E}(\BL) \to \frac{1}{2\lambda}\left(\frac{r+1}{\sqrt{r}}\right) = \frac{1}{\la}\frac{\sqrt{r}}{2}
+\end{align}
+\end{theorem}
+
+The proof can be found in Section~\ref{sec:dualbirth-proofs}. For a fixed $\lambda$, increasing $r$ in $(0,1]$ reduces the expected branch lengths, resulting in the minimum value under the Yule model (Fig.~\ref{fig:dualbirth-c-vs-r}b).
+
+\subsubsection{Expected Terminal Branch Length}
+Under the Yule model, terminal and internal branch lengths have the same expected length~\cite{Mooers2012}. For $r\ll1$, we expect that inactive entities result in long terminal branches and relatively short internal branches. These expectations can be confirmed in simulations. As expected, close to $r=1$, the mean terminal branch length is close to the mean branch length but the two values gradually diverge as $r$ decreases (Fig.~\ref{fig:dualbirth-c-vs-r}b). Therefore, the difference between average terminal and internal branch lengths is a function of $r$, and therefore, a closed-form formula for the expected terminal branch length would be useful in building an estimator of $r$. While we don't have a proven result for the terminal branch length, based on simulations, we present a conjecture. Note that this conjecture was purely reached based on our intuition and trial-and-error, starting from Equation~\ref{eq:bl} and modifying the denominator until a close match to the empirical values was obtained.
+
+\begin{conjecture}\label{thm:tbl}
+For a weighted tree shape $t$ generated by the dual-birth model with parameters $r$ and $\lambda$ conditioned on having $n$ leaves, let $\TBL$ be an r.v.\ giving the length of a random terminal branch in $t$. Then, 
+\begin{align}\label{eq:tbl}
+\lim_{n\to\infty}\mathbb{E}(\TBL)\to\frac{1}{\la}\left(\frac{\sqrt{r}}{1+2\sqrt{r}-r}\right)
+\end{align}
+\end{conjecture}
+
+Figure~\ref{fig:dualbirth-c-vs-r}b shows that the conjectured results closely match the observed mean terminal branches for a wide range of $r$ values. Note that changing $\la$ simply scales all lengths, so our simple simulations have explored \textit{all} free parameters of the dual-birth model (albeit, only for $r\in[10^{-4},1]$ range). Regardless of whether our conjecture is true (which cannot be proven by simulations), the close match of Equation~\ref{eq:tbl} and simulated results means that we can use it to provide an approximate estimator of $r$.
+
+\subsubsection{Parameter Estimation}\label{sec:paramest}
+Theorem~\ref{thm:cherr} enables us to estimate the $r$ parameter for a given tree. Given a tree with $c$ cherries, and for $x=c/n$, solving for $r$ in Equation~\ref{eq:cherries} results in the following relationship (Fig.~\ref{fig:dualbirth-sup-cvsr}):
+\begin{equation}\label{eq:rforc}
+\hat{r}(x)=\bigg(\frac{1-x-\sqrt{(x+1)(1-3x)}}{2x}\bigg)^2
+\end{equation}
+for $x\leq \frac{1}{3}$ and else $\hat{r}(x)=1$.
+
+An alternative estimator can be designed by combining Theorem~\ref{thm:bl} and Conjecture~\ref{thm:tbl} for expected total and terminal branch length. Given a tree with an average branch length of $d$ and an average terminal branch length of $l$, solving Equations~\ref{eq:bl}~and~\ref{eq:tbl} for $r$ and $\lambda_a$, we can design the following estimator for large $n$:
+\begin{equation}\label{eq:rforbl}
+\hat{r}(b,l) = \left(1-\sqrt{2\left(1-\frac{d}{l}\right)}\right)^2
+\end{equation}
+
+Further approximating the total average branch length to be the mean of internal branch lengths ($i$) and terminal branch lengths (a good approximation for large $n$), we can further simplify Equation~\ref{eq:rforbl} to:
+\begin{equation}\label{eq:rforbl-approx}
+\hat{r}(i,l) = \left(1-\sqrt{1-\frac{i}{l}}\right)^2
+\end{equation}
+
+Having estimated $r$, we can easily use Equation~\ref{eq:bl} to get an estimate of $\lambda$ from the observed mean branch length for large $n$. Note that, absent a proof for Conjecture~\ref{thm:tbl}, Equation~\ref{eq:rforbl} should be treated as an approximate estimator. Also note that this approximate estimator assumes the given tree itself was generated by the dual-birth model (e.g. it is not the result of subsampling the tips of a tree generated by the dual-birth model). We discuss statistical properties of both estimators in Section~\ref{sec:dualbirth-discussion}. 
+
+\subsubsection{Sampling the Dual-Birth Model}\label{sec:samplingalgo}\label{sec:db-algo}
+When conditioning on $n$, the number of tips, a simple algorithm can be used to sample the space of ordered weighted tree shapes defined by the dual-birth model.
+
+We start with a single-node tree and iteratively add new nodes until the tree has $n$ leaves. We use a heap to keep a list of current leaves sorted by their distance to the root. In each iteration, we add two child nodes to the highest leaf in the tree (i.e., the leaf closest to the root); we sample from two exponential distributions with rates $\la$ and $\lb$ for the left and right child's branch lengths, respectively. The two new nodes are added to the heap of leaves, and the parent is removed from the heap. Once the loop has terminated, we truncate the tree by shrinking all terminal edges except the one attached to the leaf that is closest to the root such that all leaves are equidistant to the root.
+
+%\paragraph{Correctness:}
+Hartmann \textit{et al}. have described various strategies for sampling trees with $n$ leaves~\cite{Hartmann2010}. Our sampling procedure falls under what they have termed \gls{SSA}. As they point out, the \gls{SSA} procedure produces the right distribution on tree topologies for pure birth models, like ours, because, once the process reaches $n$ tips for the first time, it never goes back to having fewer tips. A remaining question is what distribution should be used to decide the time between when $n$ leaves first become present until we stop the simulation (call it $\tav$). Let $h(\tav)$ be the p.d.f of that waiting time. If the time between when we have $n$ leaves and the the birth of leaf $n+1$ is given by $x>\tav$, then $\tav$ should be uniformly sampled between zero and $x$. Moreover, the probability of sampling each tree with $n$ leaves should be proportional to $x$, the time it remains an $n$-leaf tree. Thus, as Hartmann \textit{et al}.show, by summing over all possible values of $x$, we get:
+\begin{small}
+\begin{eqnarray}\label{eq:h}
+h(\tav) \propto \int_{x=\tav}^{\infty} x.h(\tav|x).g_{n-1}(x) \ \mathrm{d}x &=& \int_{x=\tav}^{\infty} x.\frac{1}{x}.g_{n-1}(x) \ \mathrm{d}x  \nonumber \\ 
+&=& \int_{x=\tav}^{\infty} g_{n-1}(x) \ \mathrm{d}x
+\end{eqnarray}
+\end{small}
+where $g_{n-1}$ is the p.d.f of a random variable (r.v.) for $x$. In our model, this r.v.\ is equivalent to the minimum of $n$ exponential r.v.s, $\LB{n-1}$ of which have rate $\la$ and the rest have rate $\lb$; thus, $g(x)$ is the p.d.f of an exponential with rate $\lambda_{n-1}=\lambda_a \LB{n-1}+\lambda_b(n-\LB{n-1})$. It is easy to see that Equation~\ref{eq:h} simplifies to $h(\tav)\propto g_{n-1}(\tav)$. Thus, the correct waiting time between the last birth event and the end of the simulation is identical to the waiting time for the birth event that would create $n+1$ leaves.
+
+Note that, if we were conditioning on $\tau$ (the tree height) instead of $n$, the same procedure would remain correct, except we would continue until all leaves have at least the required height and would then cut branches that are longer than $\tau$.
+
+\subsection{Simulation Setup}
+\subsubsection{Datasets}
+Given a set of parameters, we use our implementation of the fixed-$n$ sampling procedure  to generate 20 replicate ``true'' trees. We then deviate each tree from ultrametricity by multiplying each branch of the tree by a multiplier sampled from a gamma distribution with shape and rate both set to $\alpha$ (with an expected value of 1). For each true tree, we then use INDELible~\cite{Fletcher2009} and the \gls{GTR}+$\Gamma$ model~\cite{Tavare1986} to simulate a multiple sequence alignment with no indels, which is later used to infer the tree. The simulation parameters are \textit{n}, $r$, $\lambda$, and deviation from ultrametricity (i.e., the shape of the Gamma distribution, $\alpha$). For sequence evolution, the parameters to select are $k$ (the sequence length), the \gls{GTR} parameters, and the Gamma rate across sites. We also vary model of sequence evolution used for inference.
+
+\begin{table}[!ht] % TABLE 1 IN ORIGINAL PAPER
+\caption[Experiments]{Experiments (default parameters in bold)}
+\vspace{-0.25in}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+{\bf\#}&{\bf Parameter} & {\bf Parameter Values}\\
+\hline
+1&$r$ (const. bl) & $10^{-4}, 10^{-3}, {\bf 10^{-2}}, 10^{-1}, 10^{0}$\\
+2& Model & JC69, K80, HKY85, GTRCAT, \textbf{GTR+$\Gamma$}\\
+3&$\lambda$ & $33.866, 84.664, {\bf 169.328}, 338.655, 846.64$\\
+4&$k$ & $50, 100, 200, {\bf 300}, 600, 1200, 2400, 4800$\\
+5&$n$ & $25, 50, 250, 500, {\bf 1000}, 2000, 4000$\\
+6& $\alpha$ (clock) & $2.952, 5.904, {\bf 29.518}, 147.591, 295.182, \infty$\\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:dualbirth-experiments}
+\end{table}
 
 %% END DUAL-BIRTH CHAPTER
