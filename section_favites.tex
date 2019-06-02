@@ -98,7 +98,7 @@ We selected a set of ``base'' simulation models and parameters and also performe
 \begin{figure} % FIGURE 2 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=0.5\textwidth]{figs/favites-model}
-\caption[FAVITES Model]
+\caption[Epidemiological Model]
 {Epidemiological model of \gls{HIV} transmission with states Susceptible (S), Acute Untreated (AU), Acute Treated (AT), Chronic Untreated (CU), and Chronic Treated (CT). The model is parameterized by the rates of infectiousness of AU $(\lambda_{S,AU})$,  AT $(\lambda_{S,AT})$, CU $(\lambda_{S,CU})$, CT $(\lambda_{S,CT})$ individuals, and by the rate to transition from AU to CU $(\lambda_{AU \rightarrow CU})$, the rate to transition from AT to CT $(\lambda_{AT \rightarrow CT})$, the rate to start \gls{ART} $(\lambda_{U \rightarrow T})$, and the rate to stop ART $(\lambda_{T \rightarrow U})$.}
 \label{fig:favites-model}
 \end{figure}
@@ -114,7 +114,7 @@ In our simulations, a single viral lineage from each individual was sampled at t
 \paragraph{Varying Parameters.} For San Diego, we explore four parameters (Table~\ref{tab:favites-params-main}). For the contact network, in addition to the \gls{BA} model, we used the \gls{ER}~\cite{Erdos1960} and \gls{WS}~\cite{Watts1998} models. We also varied the expected degree (\ED) of individuals in the contact network between 2 and 16 (Table~\ref{tab:favites-params-main}). For seed selection, we also used ``Edge-Weighted,'' where the probability that an individual is chosen is weighted by the individual's degree. For each selection of contact network model, \ED, and seed selection method, we study multiple rates of starting ART (expressed as \EART). In our discussions, we focus on \EART, a factor that the public health departments can try to impact. Increased effort in testing at-risk populations can decrease the diagnosis time, and the increased diagnosis rate coupled with high standards of care can lead to faster ART initiation. Behavioral intervention could in principle also impact degree distribution, another factor that we vary, but the extent of the effectiveness of behavioral interventions is unclear~\cite{Kelly1991}.
 
 \begin{table}[!ht] % TABLE 1 IN ORIGINAL PAPER
-\caption[Simulation parameters]{Simulation parameters (base parameters in bold)}
+\caption[Simulation Parameters]{Simulation parameters (base parameters in bold)}
 \vspace{-0.25in}
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -154,7 +154,7 @@ Our simulated trees, like real trees, include clusters of long terminal branches
 \begin{figure} % FIGURE 3 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=0.85\textwidth]{figs/favites-real-vs-sim}
-\caption[Real vs. Simulated Data]
+\caption[Real vs. Simulated Phylogenies]
 {Kernel density estimates of the distributions of (a) patristic distances (path length) between all pairs of sequences and (b) branch lengths of real and simulated datasets for the San Diego (SD) and Uganda (UG) datasets. Averages are shown as dots (Fig.~\ref{fig:favites-avg-bl-vs-art}). Black denotes distributions computed from true (simulated) trees and grey denotes distributions computed from trees inferred from sequences (IQ-TREE for real and FastTree~2 for simulated data).  Note that real data only have inferred pairwise distances and branch lengths, as true branch lengths are not known. \EART\ is the expected time to start ART.}
 \label{fig:favites-real-vs-sim}
 \end{figure}
@@ -167,7 +167,7 @@ The model of contact network and the model of choosing the seed individuals have
 \begin{figure} % FIGURE 4 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=\textwidth]{figs/favites-num-infected-untreated-treated-vs-art}
-\caption[Real vs. Simulated Data]
+\caption[Sensitivity Analysis of Epidemiological Outcomes]
 {Sensitivity analysis of epidemiological outcomes. We show  (a) the total number of infected individuals, and (b) the ratio of the number of untreated vs. the number of treated individuals (log-scale), vs. expected time to begin Antiretroviral Therapy (\EART) for the \gls{BA} model with various mean contact numbers (\ED) with all other parameters set to base values. Untreated/treated = 1 is shown as a dashed black line, and the value of untreated/treated corresponding to the ``90-90-90'' goal~\cite{UNAIDS2017} is shown as a dashed blue line ($\sfrac{(1-0.9^3)}{0.9^3} \approx 0.37$). The Untreated/Treated value corresponding to the simulated Uganda dataset has been shown as a + symbol on (b).}
 \label{fig:favites-num-infected-untreated-treated-vs-art}
 \end{figure}
@@ -180,7 +180,7 @@ The model of contact network and the model of choosing the seed individuals have
 \begin{figure} % FIGURE 5 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=\textwidth]{figs/favites-avg-infections}
-\caption[FAVITES Effectiveness]
+\caption[Transmission Clustering Effectiveness]
 {The effectiveness of clustering methods in finding high risk individuals. The average number of new infections between years 9 and 10 of the simulation caused by individuals infected at year 9 in growing clusters. We select 1,000 individuals  from clusters, inferred by either HIV-TRACE or TreeCluster, that have the highest growth rate (ties broken randomly). As a baseline control, the average number of infections over all individuals (similar to expectations under a random selection) is shown as well. For a cluster with $n_t$ members at year $t$, growth rate is defined as $\frac{n_9-n_8}{\sqrt{n_9}}$. The columns show varying expected degree (i.e., number of sexual partners),
 and all other parameters are their base values.}
 \label{fig:favites-avg-infections}

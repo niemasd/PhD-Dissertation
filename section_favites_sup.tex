@@ -88,7 +88,7 @@ tn93\_to\_clusters.py & Convert tn93 output to the Cluster Picker clustering for
 \end{table}
 
 \begin{table}[!ht] % TABLE S4 IN ORIGINAL PAPER
-\caption[HIV Simulation Parameters (epidemiological model)]{HIV Simulation Parameters (epidemiological model)}
+\caption[Simulation Parameters: Epidemiological Model]{HIV Simulation Parameters (epidemiological model)}
 \vspace{-0.25in}
 \begin{center}
 \begin{tabular}{|P{2in}|P{1.9in}|P{1.9in}|}
@@ -124,7 +124,7 @@ tn93\_to\_clusters.py & Convert tn93 output to the Cluster Picker clustering for
 \end{table}
 
 \begin{table}[!ht] % TABLE S5 IN ORIGINAL PAPER
-\caption[HIV Simulation Parameters (evolutionary model)]{HIV Simulation Parameters (evolutionary model)}
+\caption[Simulation Parameters: Evolutionary Model]{HIV Simulation Parameters (evolutionary model)}
 \vspace{-0.25in}
 \begin{center}
 \begin{tabular}{|P{2in}|P{1.9in}|P{1.9in}|}
@@ -206,7 +206,7 @@ tn93\_to\_clusters.py & Convert tn93 output to the Cluster Picker clustering for
 \end{table}
 
 \begin{table}[!ht] % TABLE S7 IN ORIGINAL PAPER
-\caption[Simulation Result Summary]{Simulation Result Summary. U:T denotes the ratio of untreated to treated individuals.}
+\caption[Summary of Simulation Results]{Simulation Result Summary. U:T denotes the ratio of untreated to treated individuals.}
 \vspace{-0.25in}
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
@@ -258,7 +258,7 @@ Uganda & $1.041 \pm 0.046$ & $1.639 \pm 0.027$ & $0.297 \pm 0.042$ & $0.185 \pm 
 \begin{figure} % FIGURE S3 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=\textwidth]{figs/favites-avg-bl-vs-art}
-\caption[Average Branch Length vs. \EART]
+\caption[Average Branch Length vs. Expected Treatment Initiation Time]
 {Average true branch length vs. \EART for the \gls{BA}, \gls{ER}, and \gls{WS} models with random seed selection as well as for the \gls{BA} model with edge-weighted seed selection with various expected degrees. The base parameters were chosen for all other parameters.}
 \label{fig:favites-avg-bl-vs-art}
 \end{figure}
@@ -266,7 +266,7 @@ Uganda & $1.041 \pm 0.046$ & $1.639 \pm 0.027$ & $0.297 \pm 0.042$ & $0.185 \pm 
 \begin{figure} % FIGURE S4 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=0.8\textwidth]{figs/favites-dist-kde}
-\caption[Kernel Density Estimates]
+\caption[Branch Length and Pairwise Distance Distributions]
 {(a) Kernel density estimates of the distributions of (Top) pairwise tree distances, (Middle) branch lengths, and (Bottom) pairwise \gls{JC69}+$\Gamma$ distances of real and simulated datasets for San Diego and Uganda using the default value of \EART$=1$ year for (Left) various values of \ED and (Right) various mutation rate models. For a pair of sequences with Hamming distance $d$, the phylogenetic distance corrected under the \gls{JC69}+$Gamma$ model is $t=\frac{3\alpha}{4}\left(\left(1-\frac{4d}{3}\right)^{-\frac{1}{\alpha}}-1\right)$, where $\alpha$ is the shape parameter of the Gamma distribution and is estimated using IQ-TREE~\cite{Chernomor2016} in \gls{JC69}+$\Gamma$ mode. The \gls{JSD} between the distributions of each model and the real dataset distributions are as follows: for inferred pairwise distances, Truncated Normal = 0.023, Exponential = 0.055, Constant = 0.059, Gamma = 0.031, and Log-Normal = 0.024; for inferred branch length, Truncated Normal = 0.044, Exponential = 0.031, Constant = 0.072, Gamma = 0.054, and Log-Normal = 0.059. Overall, truncated normal and log-normal distributions have the best match. The \gls{JSD} values for the distributions in which \ED is varied can be found in Table~\ref{tab:favites-jsd}. (b) Kernel density estimates of distributions of pairwise \gls{JC69}+$\Gamma$ distances on San Diego simulations with various \EART values and for Uganda.}
 \label{fig:favites-dist-kde}
 \end{figure}
@@ -274,7 +274,7 @@ Uganda & $1.041 \pm 0.046$ & $1.639 \pm 0.027$ & $0.297 \pm 0.042$ & $0.185 \pm 
 \begin{figure} % FIGURE S2 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=\textwidth]{figs/favites-trees}
-\caption[FAVITES Trees]
+\caption[Real vs. Simulated Viral Phylogenies]
 {Real versus simulated phylogenetic trees. Phylogenetic trees inferred from a real dataset of \textit{pol} sequences (a) from San Diego~\cite{Little2014}, (b) from a simulated San Diego dataset, (c) from the set of all \textit{pol} sequences in the \gls{LANL} \gls{HIV} database that were sampled in Uganda between 2005 and 2014, and (d) from a simulated Uganda dataset. Trees were inferred using the ModelFinder Plus feature~\cite{Kalyaanamoorthy2017} of IQ-TREE~\cite{Chernomor2016}.}
 \label{fig:favites-trees}
 \end{figure}
@@ -282,7 +282,7 @@ Uganda & $1.041 \pm 0.046$ & $1.639 \pm 0.027$ & $0.297 \pm 0.042$ & $0.185 \pm 
 \begin{figure} % FIGURE S5 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=\textwidth]{figs/favites-states-vs-time}
-\caption[FAVITES States vs. Time]
+\caption[Epidemiological Model States vs. Time]
 {Number of infected individuals vs. time for multiple rates of starting ART (colors). The underlying contact network was simulated using the base parameters listed in Table~\ref{tab:favites-params-main} with 100,000 total individuals and 15,000 seed individuals under the epidemiological model shown in Figure~\ref{fig:favites-model}. We show figures for all infected people (Top Left), and those in chronic states (Top Right). We also show (Bottom) the ratio of the number of untreated individuals vs. the number of treated individuals (log-scale) vs. time where untreated/treated = 1 is shown as a dashed black line, and the value of untreated/treated corresponding to the ``90-90-90'' goal~\cite{UNAIDS2017} is shown in blue.}
 \label{fig:favites-states-vs-time}
 \end{figure}
@@ -290,7 +290,7 @@ Uganda & $1.041 \pm 0.046$ & $1.639 \pm 0.027$ & $0.297 \pm 0.042$ & $0.185 \pm 
 \begin{figure} % FIGURE S6 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=0.9\textwidth]{figs/favites-num-infected-all}
-\caption[FAVITES Number Infected vs. ART (All)]
+\caption[Number of Infected Individuals vs. Expected Treatment Initiation Time]
 {Total number of infected individuals vs. \EART for the \gls{BA}, \gls{ER}, and \gls{WS} models with random seed selection as well as for the \gls{BA} model with edge-weighted seed selection with various expected degrees. The base parameters were chosen for all other parameters. The number of seed individuals (15,000) is shown by a black dashed line. The BA figure is repeated in each row on the left to facilitate visual comparison to other models.}
 \label{fig:favites-num-infected-all}
 \end{figure}
@@ -298,7 +298,7 @@ Uganda & $1.041 \pm 0.046$ & $1.639 \pm 0.027$ & $0.297 \pm 0.042$ & $0.185 \pm 
 \begin{figure} % FIGURE S7 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=0.55\textwidth]{figs/favites-untreated-vs-treated-all}
-\caption[FAVITES Number Infected vs. ART (All)]
+\caption[Treated to Untreated Ratio vs. Expected Treatment Initiation Time]
 {The ratio of the number of untreated vs. the number of treated individuals (log-scale) vs. expected time to begin Antiretroviral Therapy (\EART) for the \gls{BA} (solid circles), \gls{ER} (dotted triangles), and \gls{WS} models (dashed squares) with random seed selection as well as the \gls{BA} with edge-weighted seed selection (dot-dashed pluses) with various \ED values (colors). Untreated/treated = 1 is shown as a dashed black line, and the value of untreated/treated corresponding to the ``90-90-90'' goal~\cite{UNAIDS2017} is shown as a dashed blue line $\left(\frac{1-0.9^3}{0.9^3}\approx0.37\right)$.}
 \label{fig:favites-untreated-vs-treated-all}
 \end{figure}
@@ -306,7 +306,7 @@ Uganda & $1.041 \pm 0.046$ & $1.639 \pm 0.027$ & $0.297 \pm 0.042$ & $0.185 \pm 
 \begin{figure} % FIGURE S8 IN ORIGINAL PAPER
 \centering
 \includegraphics[width=0.55\textwidth]{figs/favites-rf-short-vs-art}
-\caption[FAVITES RF and Short Branches vs. ART]
+\caption[Topology Error and Short Branches vs. Expected Treatment Initiation Time]
 {\gls{RF} distance (solid lines) and proportion of ``extremely short'' branches (dotted lines) vs. expected time to begin Antiretroviral Therapy (\EART) for the \gls{BA} model with various \ED values (colors) with all other parameters set to base values. We define branches to be ``extremely short'' if the expected number of mutations along the branch is less than or equal to 1 (i.e., the branch length is less than or equal to the reciprocal of the sequence length). All the trees are inferred using FastTree~2 and \gls{RF} is computed with respect to the true tree.}
 \label{fig:favites-rf-short-vs-art}
 \end{figure}
