@@ -247,10 +247,10 @@ To measure the efficacy of a given ProACT selection, because the true transmissi
 Let $A=\{1,\ldots,n\}$ denote the first, \ldots, $n$-th sampled individual in the current time step (years 1--9 in our simulations). For each individual $i$, let $c(i)$ denote the number of individuals directly infected by $i$ in the next time step (year 10 in our simulations). Given any set of individuals $s\subseteq A$, let $C(s)=\frac{1}{|s|}\sum_{i\in s}{c(i)}$ denote the average $c(i)$ for all individuals $i\in s$.
 
 Let $x=(x_1,\ldots,x_n)$ denote an ordering of $A$. The (unadjusted) \gls{CMA} of $x$ up to $i$ is $C\left(\{x_1,\ldots,x_i\}\right)$. Let $o=(o_1,\ldots,o_n)$ denote the ordering of $A$ in which elements are sorted in descending order of $c(i)$ (i.e., the optimal ordering), with ties broken arbitrarily. We defined the adjusted \gls{CMA} of $x$ up to $i$ as
-\begin{equation}\label{eq:cma}
+\begin{equation}\label{eq:proact-cma}
     \frac{C\left(\{x_1,\ldots,x_i\}\right)-C(A)}{C\left(\{o_1,\ldots,o_i\}\right)-C(A)}\; .
 \end{equation}
-We use Equation~\ref{eq:cma} to measure the effectiveness of a selection of the top $i$ individuals from each ordering of all individuals. We explore $i$ for 1 to 10\% of the total number of samples (i.e., $\frac{|A|}{10}$).
+We use Equation~\ref{eq:proact-cma} to measure the effectiveness of a selection of the top $i$ individuals from each ordering of all individuals. We explore $i$ for 1 to 10\% of the total number of samples (i.e., $\frac{|A|}{10}$).
 
 \subsubsection{Real Data}
 The sequences were sorted in ascending order of sample time and, for each decile, they were split at the decile to form two sets: \textit{pre} and \textit{post}. A phylogenetic tree was inferred from the sequences in \textit{pre} under the \gls{GTR}+$\Gamma$ model using FastTree~2~\cite{Price2010} and MinVar-rooted~\cite{Mai2017}. Using the resulting tree, ProACT ordered the samples. Then, pairwise distances were computed between each sequence in \textit{pre} and each sequence in \textit{post} under the \gls{TN93} model~\cite{Tamura1993} using the \texttt{tn93} tool of HIV-TRACE~\cite{Pond2018}.
