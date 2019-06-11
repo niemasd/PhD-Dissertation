@@ -1,7 +1,7 @@
 %% Dissertation Info
 \title{Mathematical Modeling of Viral Evolution and Epidemiology}
 \author{Alexander Niema Moshiri}
-\degreeyear{\the\year}
+\degreeyear{2019}
 \degreetitle{Doctor of Philosophy}
 \field{Bioinformatics and Systems Biology}
 %\specialization{Anthropogeny}  % If you have a specialization, add it here
@@ -11,11 +11,16 @@
 \cochair{Professor Pavel A. Pevzner}
 \othermembers{
 Professor Vineet Bafna\\
-Professor Joel O. Wertheim\\
 Professor David M. Smith\\
+Professor Joel O. Wertheim\\
 }
 \numberofmembers{5} % |chair| + |cochair| + |othermembers|
 
+%% Define Acknowledgement Statements (to avoid typos when copying)
+\newcommand{\ackfavites}{Chapter~\ref{chap:favites}, in full, is a reprint of the material as it appears in ``\favitestitle'' (2018). Moshiri, Niema; Ragonnet-Cronin, Manon; Wertheim, Joel; Mirarab, Siavash, \textit{Bioinformatics}, bty921. The dissertation author was the primary investigator and first author of this paper.}
+\newcommand{\ackdualbirth}{Chapter~\ref{chap:dualbirth}, in full, is a reprint of the material as it appears in ``\dualbirthtitle'' (2017). Moshiri, Niema; Mirarab, Siavash, \textit{Systematic Biology}, 67(3), 475-489. The dissertation author was the primary investigator and first author of this paper.}
+\newcommand{\ackproact}{Chapter~\ref{chap:proact}, in full, has been submitted for publication of the material as it may appear in ``\proacttitle'' (2019) Moshiri, Niema; Smith, Davey; Mirarab, Siavash, \textit{Molecular Biology and Evolution}. The dissertation author was the primary investigator and first author of this paper.}
+\newcommand{\acktreeswift}{Chapter~\ref{chap:treeswift}, in full, has been submitted for publication of the material as it may appear in ``\treeswifttitle'' (2019) Moshiri, Niema, \textit{SoftwareX}. The dissertation author was the primary investigator and sole author of this paper.}
 
 %% START FRONTMATTER
 \begin{frontmatter}
@@ -83,13 +88,13 @@ I am grateful of Prof.~Pavel Pevzner for taking me under his wing at a time when
 
 When starting a Ph.D. program, one of the most stressful thoughts is ``Will I find a good mentor?'', and I was extremely fortunate to have found Prof.~Siavash Mirarab. I cannot thank him enough for all the time and effort he has taken to make my Ph.D. experience productive and intellectually stimulating. From the long sessions in which we'd be working on an algorithmic problem together, to the hours he would spend helping me revise my manuscripts, the effort he took to mentor me has instilled within me far more than I could have imagined. I aspire to be as brilliant of a scientist as he one day, and I hope to be as great of a mentor as he was to me.
 
-Chapter~\ref{chap:favites}, in full, is a reprint of the material as it appears in ``\favitestitle'' (2018). Moshiri, Niema; Ragonnet-Cronin, Manon; Wertheim, Joel; Mirarab, Siavash, \textit{Bioinformatics}, bty921. The dissertation author was the primary investigator and first author of this paper.
+\ackfavites
 
-Chapter~\ref{chap:dualbirth}, in full, is a reprint of the material as it appears in ``\dualbirthtitle'' (2017). Moshiri, Niema; Mirarab, Siavash, \textit{Systematic Biology}, 67(3), 475-489. The dissertation author was the primary investigator and first author of this paper.
+\ackdualbirth
 
-Chapter~\ref{chap:proact}, in full, has been submitted for publication of the material as it may appear in ``\proacttitle'' (2019) Moshiri, Niema; Smith, Davey; Mirarab, Siavash, \textit{Molecular Biology and Evolution}. The dissertation author was the primary investigator and first author of this paper.
+\ackproact
 
-Chapter~\ref{chap:treeswift}, in full, has been submitted for publication of the material as it may appear in ``\treeswifttitle'' (2019) Moshiri, Niema, \textit{SoftwareX}. The dissertation author was the primary investigator and sole author of this paper. 
+\acktreeswift
 \end{acknowledgements}
 
 %% Vita
@@ -107,13 +112,13 @@ Chapter~\ref{chap:treeswift}, in full, has been submitted for publication of the
 \item Adam Rule, Amanda Birmingham, Cristal Zuniga, Ilkay Altintas, Shih-Cheng Huang, Rob Knight, \textbf{Niema Moshiri}, Mai H. Nguyen, Sara Brin Rosenthal, Fernando Pérez, and Peter W. Rose (2019). ``Ten Simple Rules for Reproducible Research in Jupyter Notebooks,'' \textit{PLOS Computational Biology (in press)}, arXiv:~1810.08055
 \item \textbf{Niema Moshiri} and Liz Izhikevich (2018). \textit{Design and Analysis of Data Structures}, Amazon KDP, ISBN:~1981017232
 \item \textbf{Niema Moshiri}, Manon Ragonnet-Cronin, Joel O. Wertheim, and Siavash Mirarab (2018). ``FAVITES: simultaneous simulation of transmission networks, phylogenetic trees, and sequences,'' \textit{Bioinformatics}, doi:~10.1093/bioinformatics/bty921
-\item \textbf{Niema Moshiri} (2018). ``The dual-Barab\'asi-Albert model,'' \textit{arXiv}, arXiv:~1810.1810.10538
-\item \textbf{Niema Moshiri} (2018). ``TreeN93: a non-parametric distance-based method for inferring viral transmission clusters,'' \textit{bioRxiv}, doi:~10.1101/383190
+%\item \textbf{Niema Moshiri} (2018). ``The dual-Barab\'asi-Albert model,'' \textit{arXiv}, arXiv:~1810.1810.10538
+%\item \textbf{Niema Moshiri} (2018). ``TreeN93: a non-parametric distance-based method for inferring viral transmission clusters,'' \textit{bioRxiv}, doi:~10.1101/383190
 \item \textbf{Niema Moshiri} (2018). ``TreeSwift: a massively scalable Python tree package,'' \textit{bioRxiv}, doi:~10.1101/325522
 \item \textbf{Niema Moshiri}, Liz Izhikevich, and Christine Alvarado (2018). ``Data Structures: An Active Learning Approach,'' \textit{edX}
 \item \textbf{Niema Moshiri}, Phillip Compeau, and Pavel Pevzner (2017). ``Analyze Your Genome!,'' \textit{edX}
 \item Phillip Compeau, \textbf{Niema Moshiri}, and Pavel Pevzner (2017). ``Introduction to Genomic Data Science,'' \textit{edX}
-\item \textbf{Niema Moshiri} (2017). ``A linear-time algorithm to sample the dual-birth model,'' \textit{bioRxiv}, doi:~10.1101/226423
+%\item \textbf{Niema Moshiri} (2017). ``A linear-time algorithm to sample the dual-birth model,'' \textit{bioRxiv}, doi:~10.1101/226423
 \item \textbf{Niema Moshiri} and Siavash Mirarab (2017). ``A Two-State Model of Tree Evolution and Its Applications to Alu Retrotransposition,'' \textit{Systematic Biology}, 67(3), 475-489. doi:~10.1093/sysbio/syx088
 \end{publications}
 \end{vitapage}
